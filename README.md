@@ -1,27 +1,106 @@
-# UserPortal
+<!-- import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
+@Injectable({
+  providedIn: 'root'
+})
+export class AdminapiService {
+  server_url:string ="http://localhost:3000"
 
-## Development server
+  constructor(private http:HttpClient,private router:Router) { }
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+  authenticate(email:string,password:string){
 
-## Code scaffolding
+     return this.http.get(`${this.server_url}/users/1`).subscribe((result:any)=>{
+      if(result.email==email && result.password==password){
+        sessionStorage.setItem("adminDetails",JSON.stringify(result))
+       alert ("Login Success")
+       this.router.navigateByUrl('dashboard')
+      }else{
+           alert("Invalid/password")
+      }
+    })
+  }
+} -->........adminapi.services
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<!-- 
+import { Component } from '@angular/core';
+import { adminAPI } from '../adminAPIServices/adminapi.service';
 
-## Running unit tests
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+email:string=""
+password:string=""
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+constructor(private adminAPI:AdminAPIServices){}
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+login(){
+  if(this.email && this.password){
+    //call api
+    this.adminAPI.authenticateAPI(this.email,this.password)
+  }else{
+    alert("Please fill the form completly")
+  }
+}
+}
+ --> login.compnent.ts
 
-## Further help
+ <!-- import { Component } from '@angular/core';
+import { userModel } from '../../users.model';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+@Component({
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.css']
+})
+export class AddUserComponent {
+  user:userModel = {}
+
+} -->
+
+add.user.component
+
+
+
+export class userModel{
+    id?:string
+    name?:string
+    email?:string
+    status?:string
+}  users.model.ts
+
+
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AdminapiService {
+  server_url:string ="http://localhost:3000"
+
+  constructor(private http:HttpClient,private router:Router) { }
+
+  authenticate(email:string,password:string){
+
+     return this.http.get(`${this.server_url}/users/1`).subscribe((result:any)=>{
+      if(result.email==email && result.password==password){
+        sessionStorage.setItem("adminDetails",JSON.stringify(result))
+       alert ("Login Success")
+       this.router.navigateByUrl('dashboard')
+      }else{
+           alert("Invalid/password")
+      }
+    })
+  }
+}  admin.api.servyces

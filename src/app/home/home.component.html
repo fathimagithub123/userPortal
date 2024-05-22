@@ -3,7 +3,7 @@
  <div *ngIf="sidebarStatus" style="height: 90vh;  width: fit-content;" class="col-lg-2 bg-dark d-flex flex-column p-3">
 <a style="text-decoration: none;color: white;" class="mb-3 fw-bolder" routerLink="/dashboard">Home</a>
 <a style="text-decoration: none;color: white;" class="mb-3 fw-bolder" routerLink="/users">Users</a>
-
+<button (click)="logout()" class="btn btn-link mt-auto text-light">Logout</button>
  </div>
  <div class="col">
    <div class="row mt-2">
@@ -24,7 +24,7 @@
       </div>
       <div class="col-lg-4">
          <div  style="height: 370px;" class="rounded p-2 border shadow">
-            <app-edit-admin></app-edit-admin>
+            <app-edit-admin (onAdminChange)="adminChange($event)"></app-edit-admin>
          </div>
          <div style="height: 140px; background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqz0loEO5S0i8_bKWAdGBKpvRSm4BRApY3DPz8tfvOsA&s'); background-size: cover;" class="p-3 d-flex banner rounded align-items-center shadow">
             <h1><i class="fa-solid fa-users text-light"></i> All Users : {{userCount}}</h1>

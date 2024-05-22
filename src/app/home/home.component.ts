@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../modules/users/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
   userCount:number = 0
   sidebarStatus:boolean = true
   adminName:string = ""
-  constructor(private api:ApiService){
+  constructor(private api:ApiService,private router:Router){
 
   }
   ngOnInit():void{
@@ -22,6 +23,13 @@ export class HomeComponent implements OnInit {
   }
   menuClicked(){
     this.sidebarStatus = !this.sidebarStatus
+  }
+  adminChange(event:any){
+    this.adminName = event
+  }
+  logout(){
+    sessionStorage.clear()
+    this.router.navigateByUrl('/')
   }
 
 }
